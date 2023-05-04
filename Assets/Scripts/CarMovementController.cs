@@ -8,7 +8,7 @@ public class CarMovementController : MonoBehaviour
     private Transform carTransform;
 
     private CarSpeedController mySpeedController;
-    private TestControllerManager myTestManager;
+    //private TestControllerManager myTestManager;
 
     [SerializeField] private int carResetDistance;
 
@@ -24,11 +24,12 @@ public class CarMovementController : MonoBehaviour
     {
         initialPos = carTransform.position;
 
-        movementController = GameObject.Find("MovementController");
+        //movementController = GameObject.Find("MovementController");
         GameObject speedController = GameObject.Find("CarMovementController");
         mySpeedController = speedController.GetComponent<CarSpeedController>();
 
-        mySpeedController.resetSpeed(movementController.GetComponent<MovementControllerScript>().hasCrossed);
+        //mySpeedController.resetSpeed(movementController.GetComponent<MovementControllerScript>().hasCrossed);
+        mySpeedController.resetSpeed(false);
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class CarMovementController : MonoBehaviour
         carTransform.position = carTransform.position - new Vector3(0, 0, mySpeedController.currentMovementSpeed * Time.deltaTime/2);
         resetPosition();
 
-        if(mySpeedController.justCrossed)
+        /*if(mySpeedController.justCrossed)
         {
             checkCarPosition();
             if (mySpeedController.crossCounter <= 2)
@@ -48,7 +49,7 @@ public class CarMovementController : MonoBehaviour
             {
                 mySpeedController.justCrossed = false;
             }
-        }
+        }*/
     }
 
     void OnMouseOver()
@@ -78,10 +79,10 @@ public class CarMovementController : MonoBehaviour
         if (distanceZ >= carResetDistance)
         {
             carTransform.position = initialPos;
-            if (movementController.GetComponent<MovementControllerScript>().hasCrossed)
+            /*if (movementController.GetComponent<MovementControllerScript>().hasCrossed)
             {
                 carTransform.position = carTransform.position + new Vector3(0.0f, -30.0f, 0.0f);
-            }
+            }*/
         }
 
 
